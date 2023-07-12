@@ -3,13 +3,15 @@ import { Pagination } from '@mui/material';
 import { Box, Stack, Typography } from '@mui/material';
 import { exerciseOptions, fetchData } from '../utils/fetchData';
 import ExerciseCard from './ExerciseCard';
+ 
 
 
 
-const Exercises = ({ exercises, setExercises, bodyPart}) => {
+
+const Exercises = ({exercises, setExercises, bodyPart}) => {
    
     const [currentPage, setCurrentPage] = useState(1);
-    const exercisesPerPage = 9;
+    const exercisesPerPage =  9;
 
     const indexOfLastExercise = currentPage * exercisesPerPage;
     const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
@@ -19,7 +21,8 @@ const Exercises = ({ exercises, setExercises, bodyPart}) => {
         setCurrentPage(value);
 
         window.scrollTo({ top: 1800, behavior: 'smooth' })
-    }
+    };
+
 
      useEffect(() => {
       const fetchExercisesData = async () => {
@@ -31,8 +34,9 @@ const Exercises = ({ exercises, setExercises, bodyPart}) => {
           exercisesData = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`, exerciseOptions);
         }
         setExercises(exercisesData);
-      }
+      };
         fetchExercisesData();
+
      }, [bodyPart]);
     
    
